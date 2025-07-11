@@ -3,15 +3,11 @@ package com.shoppit.user_service.service.impl;
 import com.shoppit.user_service.config.JwtUtil;
 import com.shoppit.user_service.dto.AuthRequest;
 import com.shoppit.user_service.dto.AuthResponse;
-import com.shoppit.user_service.entity.User;
 import com.shoppit.user_service.service.AuthService;
 import com.shoppit.user_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -23,7 +19,7 @@ public class AuthServiceImpl implements AuthService {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public AuthResponse login(AuthRequest authRequest) {

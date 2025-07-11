@@ -4,6 +4,7 @@ import com.shoppit.user_service.entity.User;
 import com.shoppit.user_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,14 +14,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return ResponseEntity.ok(userService.registerUser(user));
     }
 
-    @PostMapping("/login")
-    public String login() {
-        return "";
+    @GetMapping("/test")
+    public String test() {
+        return "User Service is running....";
     }
 
     @GetMapping("/{id}")
@@ -32,7 +37,8 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
-        return ResponseEntity.ok(userService.updateUser(user));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return ResponseEntity.ok(userService.updateUser(id, user));
     }
 
     @DeleteMapping("/delete/{id}")

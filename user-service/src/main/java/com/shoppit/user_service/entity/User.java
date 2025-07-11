@@ -10,11 +10,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
+    public User() {}
 
     public User(Long id, String email, String password, String firstName, String lastName) {
         this.id = id;
