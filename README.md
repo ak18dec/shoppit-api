@@ -2,6 +2,7 @@
 
 This project is a simple e-commerce backend system built using Java Spring Boot and microservices architecture. The goal is to learn how to build secure and scalable systems using modern patterns and tools.
 
+Refer the [Tasks Kanban Board](https://simplyankit.notion.site/22d3d25558a7808e83dec3f9683919ba?v=22d3d25558a7807091c3000cc21eca1d&source=copy_link)
 
 
 ## 🔧 Tech Stack
